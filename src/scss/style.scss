@@ -1,0 +1,79 @@
+$primary-font: 'Quando';
+$base-font-size: 15px;
+$base-text-color: #787878;
+$link-color: #111111;
+$link-hover-color: #999999;
+$heading-font: 'Josefin Sans';
+
+body {
+    font-family: $primary-font;
+    font-size: $base-font-size;
+    color: $base-text-color;
+}
+
+a {
+    font-weight: 400;
+    text-decoration: none;
+    color: $link-color;
+    transition: .20s;
+
+    &:hover {
+        color: $link-hover-color;
+    }
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 25px;
+    margin-bottom: 20px;
+    font-family: $heading-font, sans-serif;
+    font-weight: 400;
+    line-height: 1.3em;
+    word-wrap: break-word;
+    color: $link-color;
+}
+
+// Nestings
+.container {
+    width: 94%;
+    margin: 0 auto;
+
+    // Media Query Nesting
+    @media only screen and (min-width: 650px) {
+        width: 90%;
+    }
+}
+
+header {
+    font-family: $heading-font, sans-serif;
+
+    // Navigation Nesting
+    nav {
+        ul {
+            display: none;
+            // Additional Styling for Nested UL
+            li {
+                margin: 0 15px;
+                position: relative;
+                line-height: 24px;
+            }
+        }
+    }
+}
+// Mixins
+@mixin transition($properties, $duration: 0.2s, $ease: ease) {
+    transition: #{$properties} $duration $ease;
+}
+
+@mixin hover-effect($color, $hover-color) {
+    color: $color;
+    &:hover {
+        color: $hover-color;
+    }
+}
+a {
+    @include hover-effect($link-color, $link-hover-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @include hover-effect($link-color, $link-hover-color);
+}
